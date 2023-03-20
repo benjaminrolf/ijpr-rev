@@ -9,20 +9,20 @@ from bibtexparser.bibdatabase import BibDatabase
    according to the stage 2 decision'''
 
 # read excel and bibtex files
-pubs = pd.read_excel('Publications_Review.xlsx')
+pubs = pd.read_excel('Publications_Review_1.xlsx')
 
-with open('0_resources/export/Scopus_Bib_Export.bib', encoding='utf8') as f:
+with open('0_resources/Scopus_Export.bib', encoding='utf8') as f:
     parser = BibTexParser()
     parser.customization = convert_to_unicode
     scopus_bib = bibtexparser.load(f, parser=parser)
 
-with open('0_resources/export/WoS_Bib_Export.bib', encoding='utf8') as f:
+with open('0_resources/WoS_Export.bib', encoding='utf8') as f:
     parser = BibTexParser()
     parser.customization = convert_to_unicode
     wos_bib = bibtexparser.load(f, parser=parser)
 
 # filter relevant publications
-pubs_include = pubs[pubs['Stage 2 Decision'] == 'include']
+pubs_include = pubs[pubs['Title and abstract relevant?'] == 'yes']
 
 # create new bibtex database
 bibtex_keep = BibDatabase()
