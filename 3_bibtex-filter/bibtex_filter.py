@@ -9,7 +9,7 @@ from bibtexparser.bibdatabase import BibDatabase
    according to the stage 2 decision'''
 
 # read excel and bibtex files
-pubs = pd.read_excel('Publications_Review_1.xlsx')
+pubs = pd.read_excel('Publications_Review.xlsx')
 
 with open('0_resources/Scopus_Export.bib', encoding='utf8') as f:
     parser = BibTexParser()
