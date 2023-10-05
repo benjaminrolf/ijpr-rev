@@ -72,7 +72,7 @@ pubs = pd.concat([scopus[columns], wos[columns]], ignore_index=True)
 # Creates a string of all uppercase letters and removes special characters
 # (main reason why duplicates are not recognized)
 pubs['Title Upper'] = pubs['Article title'].str.upper()
-pubs['Title Upper'] = pubs['Title Upper'].apply(lambda x: re.sub(r"[ ,.:;’`'-()?]", '', x))
+pubs['Title Upper'] = pubs['Title Upper'].apply(lambda x: re.sub('[^A-Za-z0-9]+', '', x))
 
 # Remove duplicates
 pubs.drop_duplicates(
@@ -81,7 +81,7 @@ pubs.drop_duplicates(
     inplace=True,
     ignore_index=True
 )
-pubs.drop(columns=['Title Upper'], inplace=True)
+#pubs.drop(columns=['Title Upper'], inplace=True)
 
 # Match publications with previusly evaluated publications
 pubs = pd.merge(pubs, base, on=['DOI', 'Article title'], how='left')
