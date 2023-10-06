@@ -6,8 +6,8 @@ import re
    drops duplicates'''
 
 # import publications
-scopus = pd.read_excel('0_resources/Scopus_Export.xlsx')
-wos = pd.read_excel('0_resources/WoS_Export.xlsx')
+scopus = pd.read_excel('0_resources/2023-10-06 Scopus Export truncated.xlsx')
+wos = pd.read_excel('0_resources/2023-10-06 Web of Science Export.xlsx')
 base = pd.read_excel('0_resources/first_search.xlsx')
 
 # Create consistent name space
@@ -81,7 +81,7 @@ pubs.drop_duplicates(
     inplace=True,
     ignore_index=True
 )
-#pubs.drop(columns=['Title Upper'], inplace=True)
+pubs.drop(columns=['Title Upper'], inplace=True)
 
 # Match publications with previusly evaluated publications
 pubs = pd.merge(pubs, base, on=['DOI', 'Article title'], how='left')
